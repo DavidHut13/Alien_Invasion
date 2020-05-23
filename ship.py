@@ -9,12 +9,12 @@ class Ship:
         self.moving_right = False
         self.moving_left = False
         self.moving_up = False
-        self.moving_down = False 
-        self.image = pygame.image.load('images/ship.bmp')
+        self.moving_down = False
+        self.image = pygame.image.load('images/ship.png')
         self.rect = self.image.get_rect()
+        self.rect.midbottom = self.screen_rect.midbottom
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
-        self.rect.midbottom = self.screen_rect.midbottom
         
     def track_ship_movement(self):
         if self.moving_right and self.rect.x < self.screen_rect.right - 65:
@@ -29,7 +29,11 @@ class Ship:
         self.rect.y = self.y
         # print("x:{} y:{} top:{}".format(self.rect.x,self.rect.y,self.screen_rect.right))
 
-    
+    def center_ship(self):
+        """ Center the ship on the screen."""
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
 
     def blitme(self):
         self.screen.blit(self.image,self.rect)
